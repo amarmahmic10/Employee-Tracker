@@ -346,9 +346,6 @@ app.use('/api', apiRoutes);
 
 const port = process.env.PORT || 3000;
 // ...
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}/`);
 });
-/* var listener = app.listen(3000, function(){
-  console.log("Started at http:localhost:" + listener.address().port + " port");
-}); */

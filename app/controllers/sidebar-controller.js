@@ -6,6 +6,12 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
         }
         return false;
     }
+    $scope.check_admin = function(){
+        if(localStorage.getItem('admin')=='true'){
+            return true;
+        }
+        return false;
+    }
 
     $scope.login = function(credentials){
         $http.post('/api/authenticate', credentials).then(function(response){

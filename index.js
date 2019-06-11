@@ -1,41 +1,44 @@
-// ======================= \\
-//        Packages         \\
-// ======================= \\
+//----------------------------------------------------------------------------------
+//Dependencies
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // Get configurations
 
+//----------------------------------------------------------------------------------
+//Models
 var Employee = require('./app/models/employee'); // Mongoose employees model
 var User = require('./app/models/user'); // Mongoose users model
 var Departments = require('./app/models/departments'); // Departments model
 var Positions = require('./app/models/positions'); // Positions model
+var Seminars = require('./app/models/seminars'); // Positions model
 
+const port = process.env.PORT || 3000;
 
 mongoose.connect(config.database); // Connect to db
-app.set('superSecret', config.secret); // secret variable
 
+//----------------------------------------------------------------------------------
+//Uses
+app.set('superSecret', config.secret); // secret variable
 app.use(bodyParser.urlencoded({extended:false})); // body-parser => we can get info from POST/URL parameters
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/app')); // client side
 
-// ======================= \\
-//         Routes          \\
-// ======================= \\
+
+//----------------------------------------------------------------------------------
+//Routes
 app.get('/', function (req, res) {
-  res.send("Hello! The API is at /api");
+	res.sendFile('index.html');
 });
 
-// ========================================================= \\
-//       Get an instance of the router for api routes        \\
-// ========================================================= \\
+
+//Get an instance of the router for api routes
 var apiRoutes = express.Router();
 
-
+//----------------------------------------------------------------------------------
 //Authentication - No Middleware needed
 apiRoutes.post('/authenticate', function(req, res){
 	var username = req.body.username;
@@ -55,6 +58,8 @@ apiRoutes.post('/authenticate', function(req, res){
 					lastname: users.lastname,
 					admin: users.admin
 				};
+
+				
 				var token = jwt.sign(payload, app.get('superSecret'), {
 					expiresIn : 60*60*24 //24 hours valid token
 				});
@@ -65,6 +70,8 @@ apiRoutes.post('/authenticate', function(req, res){
 					admin:payload.admin,
           			token: token
 				});
+
+				
 			}else{
 				res.send({
 					success: false,
@@ -80,9 +87,8 @@ apiRoutes.post('/authenticate', function(req, res){
 	});
 });
 
-// ========================================================== \\
-//      Route middleware to authenticate and check token      \\
-// ========================================================== \\
+//----------------------------------------------------------------------------------
+//MIDDLEWARE FUNCTION
 apiRoutes.use(function(req, res, next){
 
 	//Check header/URL/POST parameters for token
@@ -112,12 +118,9 @@ apiRoutes.use(function(req, res, next){
 });
 
 
-// ========================== \\
-//    Authenticated routes    \\
-// ========================== \\
-apiRoutes.get('/', function(req, res){
-	res.json({ message: 'Welcome!', /*firstname:req.decoded.firstname*/ });
-});
+//----------------------------------------------------------------------------------
+//Authenticated routes
+
 
 //Get all employees
 apiRoutes.get('/employees', function(req, res){
@@ -271,6 +274,72 @@ apiRoutes.put('/positions/:id', function(req, res){
 	});
 });
 
+
+//Create new seminar
+apiRoutes.post('/seminars', function(req, res){
+	var name = req.body.name;
+	var topic = req.body.topic;
+	var by = req.body.by;
+	var date = req.body.date;
+	var place = req.body.place;
+	var time = req.body.time;
+
+
+		var seminar = new Seminars({name: name, topic: topic, by: by, date: date, place: place, time:time});
+		Seminars.create(seminar, function(err, seminar){
+			if(err)
+				res.send(err);
+			res.json(seminar);
+		});
+	
+});
+
+//Get all seminars
+apiRoutes.get('/seminars', function(req, res){
+	Seminars.find(function(err, seminars){
+	  if(err)
+		res.send(err);
+	  res.json(seminars);
+	})
+  });
+  
+  //Get seminar by id
+  apiRoutes.get('/seminars/:id', function(req, res){
+	Seminars.findOne({_id:req.params.id}, function(err, seminars){
+		  if(err)
+			  res.send(err);
+		  res.json(seminars);
+	  });
+  });
+  
+  //Remove selected seminar
+  apiRoutes.delete('/seminars/:id', function(req, res){
+	Seminars.findOneAndRemove({_id:req.params.id}, function(err, seminars){
+		  if(err)
+			  res.send(err);
+		  res.json(seminars);
+	  });
+  });
+  
+  //Update selected seminar
+  apiRoutes.put('/seminars/:id', function(req, res){
+	
+	  var query = {
+		name : req.body.name,
+	    topic : req.body.topic,
+		by : req.body.by,
+		date : req.body.date,
+		place : req.body.place,
+		time : req.body.time
+	  };
+  
+	  Seminars.findOneAndUpdate({_id:req.params.id}, query, function(err, seminars){
+		  if(err)
+			  res.send(err);
+		  res.json(seminars);
+	  });
+  });
+
 //Create new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;
@@ -340,12 +409,9 @@ apiRoutes.put('/users/:id', function(req, res){
 
 app.use('/api', apiRoutes);
 
-// ======================= \\
-//      Start Server       \\
-// ======================= \\
+//----------------------------------------------------------------------------------
+//Start server
 
-const port = process.env.PORT || 3000;
-// ...
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}/`);
 });

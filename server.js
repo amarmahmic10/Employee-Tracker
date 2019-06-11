@@ -12,6 +12,8 @@ var config = require('./config'); // Get configurations
 
 var Employee = require('./app/models/employee'); // Mongoose employees model
 var User = require('./app/models/user'); // Mongoose users model
+var Departments = require('./app/models/departments'); // Departments model
+var Positions = require('./app/models/positions'); // Positions model
 
 
 mongoose.connect(config.database); // Connect to db
@@ -168,6 +170,104 @@ apiRoutes.put('/employees/:id', function(req, res){
 		if(err)
 			res.send(err);
 		res.json(employees);
+	});
+});
+
+//Get all departments
+apiRoutes.get('/departments', function(req, res){
+	Departments.find(function(err, departmens){
+	  if(err)
+		res.send(err);
+	  res.json(departmens);
+	})
+});
+
+//Create new department
+apiRoutes.post('/departments', function(req, res){
+	Departments.create(req.body, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
+
+//Remove selected departemt
+apiRoutes.delete('/departments/:id', function(req, res){
+	Departments.findOneAndRemove({_id:req.params.id}, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
+
+//Get Department by id
+apiRoutes.get('/departments/:id', function(req, res){
+	Departments.findOne({_id:req.params.id}, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
+
+//Update selected department
+apiRoutes.put('/departments/:id', function(req, res){
+	var query = {
+		name:req.body.name,
+	};
+
+	Departments.findOneAndUpdate({_id:req.params.id}, query, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
+
+//Get all positions
+apiRoutes.get('/positions', function(req, res){
+	Positions.find(function(err, positions){
+	  if(err)
+		res.send(err);
+	  res.json(positions);
+	})
+});
+
+//Create new positions
+apiRoutes.post('/positions', function(req, res){
+	Positions.create(req.body, function(err, positions){
+		if(err)
+			res.send(err);
+		res.json(positions);
+	});
+});
+
+//Remove selected position
+apiRoutes.delete('/positions/:id', function(req, res){
+	Positions.findOneAndRemove({_id:req.params.id}, function(err, positions){
+		if(err)
+			res.send(err);
+		res.json(positions);
+	});
+});
+
+//Get position by id
+apiRoutes.get('/positions/:id', function(req, res){
+	Positions.findOne({_id:req.params.id}, function(err, positions){
+		if(err)
+			res.send(err);
+		res.json(positions);
+	});
+});
+
+//Update selected position
+apiRoutes.put('/positions/:id', function(req, res){
+	var query = {
+		name:req.body.name,
+	};
+
+	Positions.findOneAndUpdate({_id:req.params.id}, query, function(err, t){
+		if(err)
+			res.send(err);
+		res.json(t);
 	});
 });
 

@@ -2,7 +2,7 @@
     <div class="sidebar" data-color="red" data-image="../assets/img/sidebar-1.jpg">
         <div class="logo">
             <a href="#" class="simple-text">
-                Employee Tracker
+                EMS v0.1
             </a>
         </div>
         <div class="sidebar-wrapper">
@@ -19,7 +19,18 @@
                         <p>Add New Employee</p>
                     </a>
                 </li>
-                
+                <li ng-class="getClass('/departments')">
+                    <a href="#!/departments" ng-click="menuItemClicked()">
+                        <i class="material-icons">content_paste</i>
+                        <p>Manage Departments</p>
+                    </a>
+                </li>
+                <li ng-class="getClass('/positions')">
+                    <a href="#!/positions" ng-click="menuItemClicked()">
+                        <i class="material-icons">content_paste</i>
+                        <p>Manage Positions</p>
+                    </a>
+                </li>
                 <li ng-class="getClass('/users/create')">
                     <a href="#!/users/create" ng-click="menuItemClicked()">
                         <i class="material-icons">person</i>
@@ -52,7 +63,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> Employee Tracker </a>
+                    <a class="navbar-brand" href="#"> Employee Management System - MEAN Stack </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">

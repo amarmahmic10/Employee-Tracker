@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // Get configurations
 

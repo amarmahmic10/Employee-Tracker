@@ -19,7 +19,7 @@ var Tasks = require('./app/models/tasks'); // Tasks model
 
 const port = process.env.PORT || 3000;
 
-mongoose.connect(config.database); // Connect to db
+mongoose.connect(config.livedb); // Connect to db
 
 //----------------------------------------------------------------------------------
 //Uses

@@ -134,10 +134,10 @@ apiRoutes.get('/employees', function(req, res){
 
 //Get employee by id
 apiRoutes.get('/employees/:id', function(req, res){
-	Employee.findOne({_id:req.params.id}, function(err, employee){
+	Employee.findOne({_id:req.params.id}, function(err, employees){
 		if(err)
 			res.send(err);
-		res.json(employee);
+		res.json(employees);
 	});
 });
 
@@ -430,21 +430,22 @@ apiRoutes.get('/users', function(req, res){
   })
 });
 
+
 //Get user by id
 apiRoutes.get('/users/:id', function(req, res){
-	User.findOne({_id:req.params.id}, function(err, user){
+	User.findOne({_id:req.params.id}, function(err, users){
 		if(err)
 			res.send(err);
-		res.json(user);
+		res.json(users);
 	});
 });
 
 //Remove selected user
 apiRoutes.delete('/users/:id', function(req, res){
-	User.findOneAndRemove({_id:req.params.id}, function(err, user){
+	User.findOneAndRemove({_id:req.params.id}, function(err, users){
 		if(err)
 			res.send(err);
-		res.json(user);
+		res.json(users);
 	});
 });
 
@@ -461,10 +462,10 @@ apiRoutes.put('/users/:id', function(req, res){
 		admin:admin
 	};
 
-	User.findOneAndUpdate({_id:req.params.id}, query, function(err, user){
+	User.findOneAndUpdate({_id:req.params.id}, query, function(err, users){
 		if(err)
 			res.send(err);
-		res.json(user);
+		res.json(users);
 	});
 });
 

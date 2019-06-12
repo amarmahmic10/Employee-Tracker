@@ -30,11 +30,11 @@ function departmentsController($scope,$http,$location,$route,$routeParams, toast
 			$scope.department = response.data;
 		});
 	}
-
 	$scope.updateDepartment = function(){
 		var id = $routeParams.id;
 		$http.put('/api/departments/'+ id , $scope.department, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-			$route.reload();
+			$location.path('/departments');
+			toastr.success('You have successfully updated selected department!', 'Success');
 		});
 	}
 }

@@ -2,7 +2,7 @@ function seminarsController($scope,$http,$location,$route,$routeParams, toastr){
 
 	$scope.getSeminars = function(){
         $http.get('/api/seminars/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-          $scope.seminar = response.data;
+          $scope.seminars = response.data;
         });
       }
 

@@ -35,7 +35,8 @@ function employeeController($scope, $route, $routeParams, $http, $location, toas
 		$http.get('/api/employees/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$scope.employee = response.data;
 		});
-	}
+  }
+
 
 	$scope.getPositions = function(){
         $http.get('/api/positions/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){

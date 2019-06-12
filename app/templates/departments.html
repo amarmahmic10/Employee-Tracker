@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-md-12" ng-init="getDepartments()">
+		<div class="card">
+			<div class="card-header" data-background-color="orange">
+				<h4 class="title">Departments</h4>
+			</div>
+	
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<table class="table">
+								<thead class="text-primary">
+									<th>Name</th>
+									<th>Actions</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="department in departments">
+										<td class="text-primary">{{ department.name }}</td>
+										<td>
+										
+											<a ng-click="deleteDepartemnt(department._id)" class="btn btn-warning">
+												<span class="glyphicon glyphicon-trash"> </span> Delete </a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

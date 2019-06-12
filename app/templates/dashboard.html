@@ -1,0 +1,29 @@
+<div class="col-md-12" ng-init="getEmployees()">
+	<div class="card">
+		<div class="card-header" data-background-color="blue">
+			<h4 class="title">Employees</h4>
+			<p class="category">Here is an employee list</p>
+		</div>
+		<div class="card-content table-responsive">
+			<table class="table">
+				<thead class="text-primary">
+					<th>Name</th>
+					
+					<th>Location</th>
+					<th>Actions</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="employee in employees">
+						<td class="text-primary">{{ employee.name }}</td>
+						<td>{{ employee.area }}</td>
+						<td>
+							<a href="#!/employees/{{employee._id}}/show" class="btn btn-info "> Show </a>
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{{JaSamAdmin}}

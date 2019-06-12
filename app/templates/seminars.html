@@ -1,0 +1,36 @@
+<div class="col-md-12" ng-init="getSeminars()">
+    <div class="card">
+        <div class="card-header" data-background-color="purple">
+            <h4 class="title">Seminars</h4>
+            <p class="category">Here is a seminar list</p>
+        </div>
+        <div class="card-content table-responsive">
+            <table class="table">
+                <thead class="text-primary">
+                    <th>Name</th>
+                    <th>Topic</th>
+                    <th>Held by</th>
+                    <th>Date</th>
+                    <th>Place</th>
+                    <th>Time</th>
+
+                </thead>
+                <tbody>
+                    <tr ng-repeat="seminar in seminars">
+                        <td class="text-primary">{{ seminar.name }}</td>
+                        <td>{{ seminar.topic }}</td>
+                        <td>{{ seminar.by }}</td>
+                        <td>{{ seminar.date }}</td>
+                        <td>{{ seminar.place }}</td>
+                        <td>{{ seminar.time }}</td>
+
+                        <td>
+                            <a href="#!/seminars/{{seminar._id}}/show" class="btn btn-primary "> Show </a>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

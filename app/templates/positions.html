@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-md-12" ng-init="getPositions()">
+		<div class="card">
+			<div class="card-header" data-background-color="red">
+				<h4 class="title">Positions</h4>
+			</div>
+			
+				<div class="col-md-12">
+					<div class="card">
+						
+						<div class="card-content">
+							<table class="table">
+								<thead class="text-primary">
+									<th>Name</th>
+									<th>Actions</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="x in positions">
+										<td class="text-primary">{{ x.name }}</td>
+										<td>
+											
+											<a ng-click="deletePosition(x._id)" class="btn btn-danger">
+												<span class="glyphicon glyphicon-trash"> </span> Delete </a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

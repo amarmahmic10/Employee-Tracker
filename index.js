@@ -14,7 +14,8 @@ var Employee = require('./app/models/employee'); // Mongoose employees model
 var User = require('./app/models/user'); // Mongoose users model
 var Departments = require('./app/models/departments'); // Departments model
 var Positions = require('./app/models/positions'); // Positions model
-var Seminars = require('./app/models/seminars'); // Positions model
+var Seminars = require('./app/models/seminars'); // Seminars model
+var Tasks = require('./app/models/tasks'); // Tasks model
 
 const port = process.env.PORT || 3000;
 
@@ -218,10 +219,10 @@ apiRoutes.put('/departments/:id', function(req, res){
 		name:req.body.name,
 	};
 
-	Departments.findOneAndUpdate({_id:req.params.id}, query, function(err, departments){
+	Departments.findOneAndUpdate({_id:req.params.id}, query, function(err, department){
 		if(err)
 			res.send(err);
-		res.json(departments);
+		res.json(department);
 	});
 });
 
@@ -337,6 +338,66 @@ apiRoutes.get('/seminars', function(req, res){
 		  if(err)
 			  res.send(err);
 		  res.json(seminars);
+	  });
+  });
+
+//Create new task
+apiRoutes.post('/tasks', function(req, res){
+	var task = req.body.task;
+	var deadline = req.body.deadline;
+	var department = req.body.department;
+	var description = req.body.description;
+
+		var task = new Tasks({task: task, deadline: deadline, department: department, description: description});
+		Tasks.create(task, function(err, task){
+			if(err)
+				res.send(err);
+			res.json(task);
+		});
+	
+});
+
+//Get all tasks
+apiRoutes.get('/tasks', function(req, res){
+	Tasks.find(function(err, tasks){
+	  if(err)
+		res.send(err);
+	  res.json(tasks);
+	})
+  });
+  
+  //Get task by id
+  apiRoutes.get('/tasks/:id', function(req, res){
+	Tasks.findOne({_id:req.params.id}, function(err, task){
+		  if(err)
+			  res.send(err);
+		  res.json(task);
+	  });
+  });
+  
+  //Remove selected task
+  apiRoutes.delete('/tasks/:id', function(req, res){
+	Tasks.findOneAndRemove({_id:req.params.id}, function(err, task){
+		  if(err)
+			  res.send(err);
+		  res.json(task);
+	  });
+  });
+  
+  //Update selected task
+  apiRoutes.put('/tasks/:id', function(req, res){
+	
+	  var query = {
+		 task : req.body.task,
+ 		 deadline : req.body.deadline,
+		 department : req.body.department,
+		 description : req.body.description
+	  };
+  
+	  Tasks.findOneAndUpdate({_id:req.params.id}, query, function(err, task){
+		  if(err)
+			  res.send(err);
+		  res.json(task);
 	  });
   });
 

@@ -24,7 +24,7 @@ function departmentsController($scope,$http,$location,$route,$routeParams, toast
 		}
 	}
 
-	$scope.showSelectedDepartment = function(){
+	$scope.showDepartment = function(){
 		var id = $routeParams.id;
 		$http.get('/api/departments/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$scope.department = response.data;

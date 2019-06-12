@@ -32,11 +32,11 @@
     </div>
    
     <div ng-if="check_login() && check_admin()">
-        <div ng-include="'ems.html'"></div>
+        <div ng-include="'home.html'"></div>
     </div>
 
     <div ng-if="check_login() && !check_admin()">
-            <div ng-include="'userindex.html'"></div>
+            <div ng-include="'user-home.html'"></div>
         </div>
 </body>
 
@@ -52,6 +52,7 @@
 <script src="controllers/departments-controller.js"></script>
 <script src="controllers/positions-controller.js"></script>
 <script src="controllers/seminars-controller.js"></script>
+<script src="controllers/tasks-controller.js"></script>
 
 <!--     Custom script     -->
 <script>
@@ -61,12 +62,33 @@
     myApp.controller('departmentsController', departmentsController);
     myApp.controller('positionsController', positionsController);
     myApp.controller('seminarsController', seminarsController);
+    myApp.controller('tasksController', tasksController);
 
     myApp.config(function($routeProvider) {
         $routeProvider
         .when("/", {
             templateUrl : "templates/list.html",
             controller : "employeeController"
+        })
+        .when("/user/departments", {
+			templateUrl:"templates/departments.html",
+			controller:"departmentsController"
+        })
+        .when("/user/positions", {
+			templateUrl:"templates/positions.html",
+			controller:"positionsController"
+        })
+        .when("/user/seminars", {
+			templateUrl:"templates/seminars.html",
+			controller:"seminarsController"
+        })
+        .when("/user/tasks", {
+			templateUrl:"templates/tasks.html",
+			controller:"tasksController"
+        })
+        .when("/user/dashboard", {
+			templateUrl:"templates/dashboard.html",
+			controller:"employeeController"
         })
         .when("/dashboard", {
             templateUrl : "templates/list.html",
@@ -81,7 +103,8 @@
 			controller:"employeeController"
         })
 		.when("/employees/:id/show", {
-			templateUrl:"templates/show.html",
+            templateUrl:"templates/show.html",
+            controller:"employeeController"
         })
 		.when("/employees/create", {
 			templateUrl:'templates/add.html',
@@ -118,6 +141,22 @@
         .when("/seminars", {
             templateUrl : "templates/manage-seminar.html",
             controller : "seminarsController"
+        })
+        .when("/tasks/create", {
+            templateUrl : "templates/add-task.html",
+            controller : "tasksController"
+        })
+		.when("/tasks/:id/show", {
+			templateUrl:"templates/show-task.html",
+			controller:"tasksController"
+        })
+        .when("/tasks/:id/edit", {
+			templateUrl:'templates/edit-task.html',
+			controller:"tasksController"
+        })
+        .when("/tasks", {
+            templateUrl : "templates/manage-task.html",
+            controller : "tasksController"
         })
         .when("/users", {
             templateUrl : "templates/manage-sysusers.html",

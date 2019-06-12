@@ -24,7 +24,7 @@ function positionsController($scope,$http,$location,$route,$routeParams,toastr){
 		}
 	}
 
-	$scope.showSelectedPosition = function(){
+	$scope.showPosition = function(){
 		var id = $routeParams.id;
 		$http.get('/api/positions/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$scope.position = response.data;

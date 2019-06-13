@@ -69,113 +69,113 @@
 
     myApp.config(function($routeProvider) {
         $routeProvider
-        .when("/", {
-            templateUrl : "templates/dashboard.html",
-            controller : "employeeController"
+        .when('/', {
+            templateUrl : 'templates/dashboard.html',
+            controller : 'employeeController'
         })
-        .when("/user/departments", {
-			templateUrl:"templates/departments.html",
-			controller:"departmentsController"
+        .when('/user/departments', {
+			templateUrl:'templates/departments.html',
+			controller:'departmentsController'
         })
-        .when("/user/positions", {
-			templateUrl:"templates/positions.html",
-			controller:"positionsController"
+        .when('/user/positions', {
+			templateUrl:'templates/positions.html',
+			controller:'positionsController'
         })
-        .when("/user/seminars", {
-			templateUrl:"templates/seminars.html",
-			controller:"seminarsController"
+        .when('/user/seminars', {
+			templateUrl:'templates/seminars.html',
+			controller:'seminarsController'
         })
-        .when("/user/tasks", {
-			templateUrl:"templates/tasks.html",
-			controller:"tasksController"
+        .when('/user/tasks', {
+			templateUrl:'templates/tasks.html',
+			controller:'tasksController'
         })
-        .when("/user/dashboard", {
-			templateUrl:"templates/dashboard.html",
-			controller:"employeeController"
+        .when('/user/dashboard', {
+			templateUrl:'templates/dashboard.html',
+			controller:'employeeController'
         })
-        .when("/dashboard", {
-            templateUrl : "templates/list.html",
-            controller : "employeeController"
+        .when('/dashboard', {
+            templateUrl : 'templates/list.html',
+            controller : 'employeeController'
         })
-        .when("/employees", {
-            templateUrl : "templates/list.html",
-            controller : "employeeController"
+        .when('/employees', {
+            templateUrl : 'templates/list.html',
+            controller : 'employeeController'
         })
-		.when("/employees/:id/edit", {
-			templateUrl:"templates/edit.html",
-			controller:"employeeController"
+		.when('/employees/:id/edit', {
+			templateUrl:'templates/edit.html',
+			controller:'employeeController'
         })
-		.when("/employees/:id/show", {
-            templateUrl:"templates/show.html",
-            controller:"employeeController"
+		.when('/employees/:id/show', {
+            templateUrl:'templates/show.html',
+            controller:'employeeController'
         })
-		.when("/employees/create", {
+		.when('/employees/create', {
 			templateUrl:'templates/add.html',
-			controller:"employeeController"
+			controller:'employeeController'
         })
-        .when("/departments", {
-            templateUrl : "templates/manage-departments.html",
-            controller : "departmentsController"
+        .when('/departments', {
+            templateUrl : 'templates/manage-departments.html',
+            controller : 'departmentsController'
         })
-        .when("/departments/:id/edit", {
+        .when('/departments/:id/edit', {
 			templateUrl:'templates/edit-department.html',
-			controller:"departmentsController"
+			controller:'departmentsController'
         })
-        .when("/positions", {
-            templateUrl : "templates/manage-positions.html",
-            controller : "positionsController"
+        .when('/positions', {
+            templateUrl : 'templates/manage-positions.html',
+            controller : 'positionsController'
         })
-        .when("/positions/:id/edit", {
+        .when('/positions/:id/edit', {
 			templateUrl:'templates/edit-position.html',
-			controller:"positionsController"
+			controller:'positionsController'
         })
-        .when("/seminars/create", {
-            templateUrl : "templates/add-seminar.html",
-            controller : "seminarsController"
+        .when('/seminars/create', {
+            templateUrl : 'templates/add-seminar.html',
+            controller : 'seminarsController'
         })
-		.when("/seminars/:id/show", {
-			templateUrl:"templates/show-seminar.html",
-			controller:"seminarsController"
+		.when('/seminars/:id/show', {
+			templateUrl:'templates/show-seminar.html',
+			controller:'seminarsController'
         })
-        .when("/seminars/:id/edit", {
+        .when('/seminars/:id/edit', {
 			templateUrl:'templates/edit-seminar.html',
-			controller:"seminarsController"
+			controller:'seminarsController'
         })
-        .when("/seminars", {
-            templateUrl : "templates/manage-seminar.html",
-            controller : "seminarsController"
+        .when('/seminars', {
+            templateUrl : 'templates/manage-seminar.html',
+            controller : 'seminarsController'
         })
-        .when("/tasks/create", {
-            templateUrl : "templates/add-task.html",
-            controller : "tasksController"
+        .when('/tasks/create', {
+            templateUrl : 'templates/add-task.html',
+            controller : 'tasksController'
         })
-		.when("/tasks/:id/show", {
-			templateUrl:"templates/show-task.html",
-			controller:"tasksController"
+		.when('/tasks/:id/show', {
+			templateUrl:'templates/show-task.html',
+			controller:'tasksController'
         })
-        .when("/tasks/:id/edit", {
+        .when('/tasks/:id/edit', {
 			templateUrl:'templates/edit-task.html',
-			controller:"tasksController"
+			controller:'tasksController'
         })
-        .when("/tasks", {
-            templateUrl : "templates/manage-task.html",
-            controller : "tasksController"
+        .when('/tasks', {
+            templateUrl : 'templates/manage-task.html',
+            controller : 'tasksController'
         })
-        .when("/users", {
-            templateUrl : "templates/manage-sysusers.html",
-            controller : "sysuserController"
+        .when('/users', {
+            templateUrl : 'templates/manage-sysusers.html',
+            controller : 'sysuserController'
         })
-		.when("/users/:id/show", {
-			templateUrl:"templates/show-sysuser.html",
-			controller:"sysuserController"
+		.when('/users/:id/show', {
+			templateUrl:'templates/show-sysuser.html',
+			controller:'sysuserController'
         })
-        .when("/users/create", {
-            templateUrl : "templates/add-sysuser.html",
-            controller : "sysuserController"
+        .when('/users/create', {
+            templateUrl : 'templates/add-sysuser.html',
+            controller : 'sysuserController'
         })
-        .when("/users/:id/edit", {
+        .when('/users/:id/edit', {
 			templateUrl:'templates/edit-user.html',
-			controller:"sysuserController"
+			controller:'sysuserController'
         });
     });
 </script>

@@ -8,11 +8,11 @@
               <form name="taskForm" ng-submit="addTask(task)" ng-init="getDepartments();">
                 <div class="form-group">
                   <label for="name">Task :</label>
-                  <input type="text" class="form-control" ng-model="task.task" required>
+                  <input type="text" id="task" class="form-control" ng-model="task.task" required>
                 </div>
                 <div class="form-group">
                     <label for="deadline">Deadline:</label>
-                    <input type="date" class="form-control" ng-model="task.deadline" required>
+                    <input type="date" id="deadline" class="form-control" ng-model="task.deadline" required>
                     </div>
                     <div class="form-group">
                       <label for="dept">Department:</label>
@@ -22,10 +22,10 @@
                     </div>
                 <div class="form-group">
                   <label for="description">Description:</label>
-                  <input type="text" class="form-control" ng-model="task.description" required>
+                  <input id="description" type="text" class="form-control" ng-model="task.description" required>
                 </div>
          
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" id="submitButton" class="btn btn-success">Save</button>
                 <a href="#!/tasks" class="btn btn-danger"> Cancel</a>
             </form>
             </div>

@@ -8,7 +8,7 @@
             <form name="userForm" ng-submit="addUser(user)">
               <div class="form-group">
                 <label for="name">Username:</label>
-                <input type="text" class="form-control" ng-model="user.username" required>
+                <input type="text" name="username" class="form-control" ng-model="user.username" required>
               </div>
               <div class="form-group">
                 <label for="name">Password:</label>
@@ -23,22 +23,22 @@
 
               <div class="form-group">
                 <label for="name">First name:</label>
-                <input type="text" class="form-control" ng-model="user.fname" required>
+                <input name="firstname" type="text" class="form-control" ng-model="user.fname" required>
               </div>
               <div class="form-group">
                 <label for="name">Last name:</label>
-                <input type="text" class="form-control" ng-model="user.lname" required>
+                <input name="lastname" type="text" class="form-control" ng-model="user.lname" required>
               </div>
               <div class="form-group">
                 <label for="dept">User Role:</label>
-                <select ng-model="user.role">
+                <select id="userType"ng-model="user.role">
                   <option value="" selected disabled hidden>Choose here</option>
                   <option value="Admin">Admin</option>
                   <option value="User" selected>User</option>
               </select>
               
               </div>
-              <button type="submit" ng-disabled="user.password != user.confirmPassword" class="btn btn-success">Save</button>
+              <button type="submit" id="submitButton" ng-disabled="user.password != user.confirmPassword" class="btn btn-success">Save</button>
               <a href="#!/employees" class="btn btn-danger"> Cancel</a>
           </form>
           </div>
